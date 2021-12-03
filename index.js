@@ -4,10 +4,7 @@ const io = require("socket.io")(server);
 const cors = require("cors");
 
 const port = process.envPORT || 4000;
-app.use(cors({
-    origin: "*",
-    methods: "GET, POST",
-}));
+app.use(cors());
 
 app.get("/", (req, res) => {
     res.send('server is running');
