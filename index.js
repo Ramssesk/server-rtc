@@ -3,7 +3,7 @@ const app = express();
 const server = require("http").createServer(app);
 const cors = require("cors");
 
-const port = process.envPORT || 4000;
+const port = process.env.PORT;
 const io = require("socket.io")(server, {
     cors: {
         origin: "*",
@@ -16,9 +16,9 @@ app.use(cors({
 }));
 app.use(express.json({extended: true}));
 
-app.get("/", (req, res) => {
-    res.send('server is running');
-});
+// app.get("/", (req, res) => {
+//     res.send('server is running');
+// });
 
 io.on("connection", (socket) => {
 	socket.emit("me", socket.id);
