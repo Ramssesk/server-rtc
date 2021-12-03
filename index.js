@@ -20,20 +20,20 @@ app.get("/", (req, res) => {
     res.send('server is running');
 });
 
-io.on("connection", (socket) => {
-	socket.emit("me", socket.id);
+// io.on("connection", (socket) => {
+// 	socket.emit("me", socket.id);
 
-	socket.on("disconnect", () => {
-		socket.broadcast.emit("callended")
-	});
+// 	socket.on("disconnect", () => {
+// 		socket.broadcast.emit("callended")
+// 	});
 
-	socket.on("calluser", ({ userToCall, signalData, from, name }) => {
-		io.to(userToCall).emit("calluser", { signal: signalData, from, name });
-	});
+// 	socket.on("calluser", ({ userToCall, signalData, from, name }) => {
+// 		io.to(userToCall).emit("calluser", { signal: signalData, from, name });
+// 	});
 
-	socket.on("answercall", (data) => {
-		io.to(data.to).emit("callaccepted", data.signal)
-	});
-});
+// 	socket.on("answercall", (data) => {
+// 		io.to(data.to).emit("callaccepted", data.signal)
+// 	});
+// });
 
 server.listen(port, () => console.log('listen: ', port))
